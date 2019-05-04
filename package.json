@@ -2,7 +2,7 @@
   "name": "rstruct",
   "version": "0.1.0",
   "description": "Ruby-like Structs for JavaScript",
-  "main": "index.js",
+  "main": "src/rstruct/index.js",
   "repository": "github.com/flyinggrizzly/node-rstruct",
   "author": "Sean DMR <sean@flyinggrizzly.net>",
   "license": "MIT",

@@ -1,13 +1,16 @@
 {
   "name": "rstruct",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Ruby-like Structs for JavaScript",
-  "main": "src/rstruct/index.js",
+  "main": "lib/rstruct/index.js",
   "repository": "github.com/flyinggrizzly/node-rstruct",
   "author": "Sean DMR <sean@flyinggrizzly.net>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "@babel/register": "^7.4.4",
     "eslint": "^5.16.0",
     "jest": "^24.7.1"
   },
@@ -16,7 +19,9 @@
     "src"
   ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "./node_modules/.bin/babel src --out-dir lib",
+    "prepare": "yarn build"
   },
   "jest": {
     "roots": [

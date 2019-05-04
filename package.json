@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "github.com/flyinggrizzly/node-rstruct",
   "author": "Sean DMR <sean@flyinggrizzly.net>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
 }

@@ -1,14 +1,15 @@
 import _ from 'lodash'
 
-export default function RStruct(...args) {
+export default function RStruct(...attributes) {
   let methods
-  if (_.last(args) instanceof Object)
-    methods = args.pop()
+  if (_.last(attributes) instanceof Object)
+    methods = attributes.pop()
 
   const klass = class {
     constructor() {
-      args.forEach((arg, index) => {
-        this[arg] = arguments[index]
+      attributes.forEach((name, index) => {
+        //validateAttributeName(name)
+        this[name] = arguments[index]
       })
     }
   }

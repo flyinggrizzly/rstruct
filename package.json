@@ -1,16 +1,19 @@
 {
   "name": "rstruct",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Ruby-like Structs for JavaScript",
   "main": "src/rstruct/index.js",
-  "repository": "github.com/flyinggrizzly/node-rstruct",
+  "repository": "github.com/flyinggrizzly/rstruct",
+  "homepage": "github.com/flyinggrizzly/rstruct",
   "author": "Sean DMR <sean@flyinggrizzly.net>",
+  "keywords": [ "ruby", "struct", "openstruct" ],
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
+    "core-js": "2",
     "eslint": "^5.16.0",
     "jest": "^24.7.1"
   },
@@ -31,7 +34,6 @@
     ]
   },
   "dependencies": {
-    "core-js": "2",
     "lodash": "^4.17.11"
   }
 }

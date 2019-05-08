@@ -6,7 +6,11 @@
   "repository": "github.com/flyinggrizzly/rstruct",
   "homepage": "github.com/flyinggrizzly/rstruct",
   "author": "Sean DMR <sean@flyinggrizzly.net>",
-  "keywords": [ "ruby", "struct", "openstruct" ],
+  "keywords": [
+    "ruby",
+    "struct",
+    "openstruct"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -34,6 +38,7 @@
     ]
   },
   "dependencies": {
+    "identifierfy": "^2.0.0",
     "lodash": "^4.17.11"
   }
 }

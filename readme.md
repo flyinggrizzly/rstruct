@@ -47,23 +47,22 @@ const MyStruct = new RStruct('one', 'two', {
 })
 ```
 
-Attribute and method names **must** begin with a char or underscore, and otherwise contain
-only chars, numbers, and underscores, which is a subset of JS's valid
-identifiers[^subset-of-js-identifiers]:
+Attribute and method names **must** begin with a char, dollar-sign, or
+underscore, and otherwise contain only chars, numbers, dollar-signs, and
+underscores, and must not be reserved JS keywords. Basically, they need to be
+valid JS identifiers:
 
 ```javascript
 // Good
-const MyStruct = new RStruct('param', 'another_param', 'param3', {
+const MyStruct = new RStruct('_param', 'another_param', 'param3', `$param`, {
   method() { ... },
   method_2() { ... },
   method3WithCamelCase() { ... },
-  _privateMethod() { ... }
+  _privateMethod() { ... },
+  $method() { ... }
 })
 
 // Bad
 const BadStruct = new RStruct('1stParam', 'hyphenated-param', 'wtf$!?#!')
 ```
 
----
-
-[^subset-of-js-identifiers]: JS allows any alphanumeric character, as well as `_` and `$` in identifiers, and requires they not begin with a number. `RStruct` further disallows `$`. See https://developer.mozilla.org/en-US/docs/Glossary/Identifier for more.

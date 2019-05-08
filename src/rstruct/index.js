@@ -1,9 +1,10 @@
-import _ from 'lodash'
 import identifierfy from 'identifierfy'
 
 export default function RStruct(...attributes) {
   let methods
-  if (_.last(attributes) instanceof Object) {
+  let lastArgument = attributes[attributes.length - 1]
+
+  if (lastArgument instanceof Object) {
     methods = attributes.pop()
   }
 
@@ -20,7 +21,7 @@ export default function RStruct(...attributes) {
   }
 
   if (methods) {
-    let methodNames = _.keys(methods)
+    let methodNames = Object.keys(methods)
 
     methodNames.forEach(name => {
       let methodBody = methods[name]

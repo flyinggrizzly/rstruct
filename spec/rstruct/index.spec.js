@@ -11,40 +11,34 @@ describe('RStruct', () => {
     })
 
     describe('attribute and method name validation', () => {
-      it('requires a char or underscore as the first character', () => {
-        expect(() => {
-          new RStruct('1stParam')
-        }).toThrowError()
+      it('verifies attribute names are valid JS identifiers', () => {
+        const VALID_IDENTIFIERS = [
+          '$startsWithDollar',
+          'startsWithChar',
+          '_startsWithUnderscore',
+          'StartsWithCapital',
+          'includesNumeralOne_1'
+        ]
 
         expect(() => {
-          new RStruct('_privateParam', 'publicParam', 'PascalParam')
+          new RStruct(...VALID_IDENTIFIERS)
         }).not.toThrowError()
 
-        expect(() => {
-          new RStruct('a', {
-            $method() {
-              return `
-                '$method' is a valid identifier, invalid RStruct method name.
-                See https://developer.mozilla.org/en-US/docs/Glossary/Identifier for more.
-              `
-            }
+        const INVALID_IDENTIFIERS = [
+          '1_startsWithNumeral',
+          'includes_!_exclamation_point',
+          'uses-hyphens',
+          'includes@sign'
+        ]
+
+        INVALID_IDENTIFIERS.forEach(badIdentifier => {
+          expect(() => {
+            new RStruct(badIdentifier)
           }).toThrowError()
         })
       })
 
-      it('allows numbers in names after the first character', () => {
-        expect(() => {
-          new RStruct('paramWithNumeral1inIt')
-        }).not.toThrowError()
-
-        expect(() => {
-          new RStruct('a', {
-            methodWithNumeral1InName() {
-              return 'valid'
-            }
-          })
-        }).not.toThrowError()
-      })
+      it('relies on JS syntax parsing to ensure method names are valid identifiers', () => {})
     })
   })
 

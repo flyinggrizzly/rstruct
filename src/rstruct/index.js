@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import identifierfy from 'identifierfy'
 
 export default function RStruct(...attributes) {
   let methods
@@ -22,8 +23,6 @@ export default function RStruct(...attributes) {
     let methodNames = _.keys(methods)
 
     methodNames.forEach(name => {
-      validateMethodName(name)
-
       let methodBody = methods[name]
 
       if (!(methodBody instanceof Function))
@@ -37,31 +36,7 @@ export default function RStruct(...attributes) {
 }
 
 function validateAttributeName(name) {
-  validateAllCharsOfName(name)
-  validateFirstCharOfName(name)
-}
-
-function validateMethodName(name) {
-  // JS will raise a SyntaxError if the first char of an object
-  // key is a numeral, so we're covered there for method names
-  // starting with numbers
-  validateAllCharsOfName(name)
-}
-
-function validateAllCharsOfName(name) {
-  const validCharacters = "abcdefghijklmnopqrstuvwxyz_1234567890".split('')
-  let characters = name.split('')
-
-  characters.forEach(c => {
-    if (!(_.includes(validCharacters, _.toLower(c))))
-      throw new Error(`${name}: attributes and method names must consist of only chars, numbers, and underscores ('_')`)
-  })
-}
-
-function validateFirstCharOfName(name) {
-  const validCharacters = "abcdefghijklmnopqrstuvwxyz_".split('')
-  let firstCharacter = _.head(name.split(''))
-
-  if (!(_.includes(validCharacters, _.toLower(firstCharacter))))
-    throw new Error(`${name}: attribute and method names must begin with a char or underscore ('_')`)
+  if (name !== identifierfy(name)) {
+    throw new Error(`${name} is not a valid JavaScript identifier`)
+  }
 }

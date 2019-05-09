@@ -35,7 +35,9 @@ const RStruct = function (...attributes) {
 }
 
 function validateAttributeName(name) {
-  if (name !== identifierfy(name)) {
+  const identifierRegex = /^[a-zA-Z_$]{1}[\w$]*$/
+
+  if (name.match(identifierRegex) === null) {
     throw new Error(`${name} is not a valid JavaScript identifier`)
   }
 }

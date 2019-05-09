@@ -37,7 +37,5 @@
       "src"
     ]
   },
-  "dependencies": {
-    "identifierfy": "^2.0.0"
-  }
+  "dependencies": {}
 }

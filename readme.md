@@ -66,3 +66,6 @@ const MyStruct = new RStruct('_param', 'another_param', 'param3', `$param`, {
 const BadStruct = new RStruct('1stParam', 'hyphenated-param', 'wtf$!?#!')
 ```
 
+This is currently limited to ASCII characters, so this is technically a subset
+of valid JS identifiers. I'm open to PRs to add full Unicode support.
+

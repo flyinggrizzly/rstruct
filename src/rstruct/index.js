@@ -1,6 +1,4 @@
-import identifierfy from 'identifierfy'
-
-export default function RStruct(...attributes) {
+const RStruct = function (...attributes) {
   let methods
   let lastArgument = attributes[attributes.length - 1]
 
@@ -41,3 +39,5 @@ function validateAttributeName(name) {
     throw new Error(`${name} is not a valid JavaScript identifier`)
   }
 }
+
+module.exports = RStruct

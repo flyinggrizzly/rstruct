@@ -6,9 +6,7 @@ const RStruct = function (...attributes) {
     methods = attributes.pop()
   }
 
-  attributes.forEach(name => {
-    validateAttributeName(name)
-  })
+  validateBarewordNames(attributes)
 
   const klass = class {
     constructor() {
@@ -21,6 +19,8 @@ const RStruct = function (...attributes) {
   if (methods) {
     let methodNames = Object.keys(methods)
 
+    validateBarewordNames(methodNames)
+
     methodNames.forEach(name => {
       let methodBody = methods[name]
 
@@ -32,6 +32,10 @@ const RStruct = function (...attributes) {
   }
 
   return klass
+}
+
+function validateBarewordNames(attributes) {
+  attributes.forEach(name => validateAttributeName(name) )
 }
 
 function validateAttributeName(name) {

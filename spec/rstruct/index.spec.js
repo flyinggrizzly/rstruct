@@ -11,25 +11,25 @@ describe('RStruct', () => {
     })
 
     describe('attribute and method name validation', () => {
-      it('verifies attribute names are valid JS identifiers', () => {
-        const VALID_IDENTIFIERS = [
-          '$startsWithDollar',
-          'startsWithChar',
-          '_startsWithUnderscore',
-          'StartsWithCapital',
-          'includesNumeralOne_1'
-        ]
+      const VALID_IDENTIFIERS = [
+        '$startsWithDollar',
+        'startsWithChar',
+        '_startsWithUnderscore',
+        'StartsWithCapital',
+        'includesNumeralOne_1'
+      ]
 
+      const INVALID_IDENTIFIERS = [
+        '1_startsWithNumeral',
+        'includes_!_exclamation_point',
+        'uses-hyphens',
+        'includes@sign'
+      ]
+
+      it('verifies attribute names are valid JS identifiers', () => {
         expect(() => {
           new RStruct(...VALID_IDENTIFIERS)
         }).not.toThrowError()
-
-        const INVALID_IDENTIFIERS = [
-          '1_startsWithNumeral',
-          'includes_!_exclamation_point',
-          'uses-hyphens',
-          'includes@sign'
-        ]
 
         INVALID_IDENTIFIERS.forEach(badIdentifier => {
           expect(() => {
@@ -38,7 +38,23 @@ describe('RStruct', () => {
         })
       })
 
-      it('relies on JS syntax parsing to ensure method names are valid identifiers', () => {})
+      it('validates method names', () => {
+        VALID_IDENTIFIERS.forEach(bareword => {
+          expect(() => {
+            new RStruct({
+              [bareword]: function() { return true }
+            })
+          }).not.toThrowError()
+        })
+
+        INVALID_IDENTIFIERS.forEach(bareword => {
+          expect(() => {
+            new RStruct({
+              [bareword]: function() { return true }
+            })
+          }).toThrowError()
+        })
+      })
     })
   })
 

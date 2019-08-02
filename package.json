@@ -1,6 +1,6 @@
 {
   "name": "rstruct",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Ruby-like Structs for JavaScript",
   "main": "src/rstruct/index.js",
   "repository": "github.com/flyinggrizzly/rstruct",

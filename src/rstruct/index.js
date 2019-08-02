@@ -19,6 +19,8 @@ const RStruct = function (...attributes) {
   if (methods) {
     let methodNames = Object.keys(methods)
 
+    validateBarewordNames(methodNames)
+
     methodNames.forEach(name => {
       let methodBody = methods[name]
 
